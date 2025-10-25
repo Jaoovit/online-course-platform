@@ -1,14 +1,14 @@
 package com.oliveira.online_course_platform.domain.course;
 
-import com.oliveira.online_course_platform.domain.model.Model;
+import com.oliveira.online_course_platform.domain.module.Module;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Table(name = "courses")
 @Entity
+@Table(name = "courses")
 public class Course {
 
     @Id
@@ -19,7 +19,6 @@ public class Course {
     private String description;
     private Boolean completed;
 
-    @ManyToOne
-    @JoinColumn(name = "model_id", referencedColumnName = "id", nullable = false)
-    private List<Model> models = new ArrayList<>();
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Module> modules = new ArrayList<>();
 }
