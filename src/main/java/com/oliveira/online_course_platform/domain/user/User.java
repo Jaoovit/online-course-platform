@@ -1,9 +1,12 @@
 package com.oliveira.online_course_platform.domain.user;
 
+import com.oliveira.online_course_platform.domain.course.Course;
 import com.oliveira.online_course_platform.domain.role.Role;
 import jakarta.persistence.*;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "users")
@@ -23,6 +26,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
+
+    @ManyToMany(mappedBy = "user")
+    private List<Course> courses = new ArrayList();
 
     public UUID getId() {
         return id;
