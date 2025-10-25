@@ -27,7 +27,7 @@ public class User {
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
-    @ManyToMany(mappedBy = "user")
+    @ManyToMany(mappedBy = "users")
     private List<Course> courses = new ArrayList();
 
     public UUID getId() {
