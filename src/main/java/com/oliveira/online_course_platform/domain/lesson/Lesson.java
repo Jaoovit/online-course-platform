@@ -1,18 +1,15 @@
-package com.oliveira.online_course_platform.domain.model;
+package com.oliveira.online_course_platform.domain.lesson;
 
-import com.oliveira.online_course_platform.domain.lesson.Lesson;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "models")
-public class Model {
+@Table(name = "lessons")
+public class Lesson {
 
     @Id
     @GeneratedValue
@@ -21,6 +18,4 @@ public class Model {
     private String title;
     private String description;
     private Boolean completed;
-
-    private List<Lesson> lessons = new ArrayList<>();
 }
