@@ -85,4 +85,12 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 }
