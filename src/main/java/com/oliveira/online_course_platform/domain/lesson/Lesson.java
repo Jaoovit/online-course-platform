@@ -1,8 +1,8 @@
 package com.oliveira.online_course_platform.domain.lesson;
 
 import jakarta.persistence.*;
-
 import java.util.UUID;
+import com.oliveira.online_course_platform.domain.module.Module;
 
 @Entity
 @Table(name = "lessons")
