@@ -29,6 +29,9 @@ public class AuthService {
         user.setFirstName(data.firstName());
         user.setLastName(data.lastName());
 
+        if (data.username().length() > 25) {
+            throw new BadRequest("Username can't have more then 25 characters");
+        }
         userService.findUserByUserName(data.username());
         user.setUsername(data.username());
 
@@ -36,13 +39,14 @@ public class AuthService {
         user.setEmail(data.email());
 
         if (!data.password().equals(data.confirmPassword())) {
-            throw new BadRequest("Password don't match");
+            throw new BadRequest("Password and confirm password don't match");
         }
         user.setPassword(data.password());
 
         user.setCourses(new ArrayList<Course>());
         user.setRole(roleService.createUserRole());
 
+        userRepository.save(user);
         return user;
     }
 }
