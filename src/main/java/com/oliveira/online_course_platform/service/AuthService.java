@@ -27,7 +27,11 @@ public class AuthService {
 
         user.setFirstName(data.firstName());
         user.setLastName(data.lastName());
+
         user.setUsername(data.username());
+
+
+
         user.setEmail(data.email());
         user.setPassword(data.password());
         user.setCourses(new ArrayList<Course>());

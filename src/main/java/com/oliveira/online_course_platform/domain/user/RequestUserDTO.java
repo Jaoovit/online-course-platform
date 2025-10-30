@@ -4,5 +4,7 @@ public record RequestUserDTO(String firstName,
                              String lastName,
                              String email,
                              String username,
-                             String password) {
+                             String password,
+                             String confirmPassword
+                             ) {
 }
