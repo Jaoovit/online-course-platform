@@ -26,21 +26,22 @@ public class AuthService {
 
         User user = new User();
 
+        if (data.firstName().length() > 75) throw new BadRequest("First name can't have more then 25 characters");
         user.setFirstName(data.firstName());
+
+        if (data.lastName().length() > 75) throw new BadRequest("Last name can't have more then 25 characters");
         user.setLastName(data.lastName());
 
-        if (data.username().length() > 25) {
-            throw new BadRequest("Username can't have more then 25 characters");
-        }
+        if (data.username().length() > 25) throw new BadRequest("Username can't have more then 25 characters");
+
         userService.findUserByUserName(data.username());
         user.setUsername(data.username());
 
         userService.findUserByEmail(data.email());
         user.setEmail(data.email());
 
-        if (!data.password().equals(data.confirmPassword())) {
-            throw new BadRequest("Password and confirm password don't match");
-        }
+        if (data.password().length() > 75) throw new BadRequest("Username can't have more then 75 characters");
+        if (!data.password().equals(data.confirmPassword())) throw new BadRequest("Password and confirm password don't match");
         user.setPassword(data.password());
 
         user.setCourses(new ArrayList<Course>());
