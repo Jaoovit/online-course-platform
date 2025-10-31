@@ -18,7 +18,6 @@ public class Module {
 
     private String title;
     private String description;
-    private Boolean completed;
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
@@ -49,14 +48,6 @@ public class Module {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Boolean getCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
     }
 
     public Course getCourse() {
