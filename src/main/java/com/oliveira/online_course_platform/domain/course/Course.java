@@ -19,7 +19,7 @@ public class Course {
     private String description;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Module> modules = new ArrayList<>();
+    private List<Module> modules = new ArrayList();
 
     public UUID getId() {
         return id;
@@ -49,7 +49,7 @@ public class Course {
         return modules;
     }
 
-    public void setModules(ArrayList<java.lang.Module> modules) {
+    public void setModules(List<Module> modules) {
         this.modules = modules;
     }
 }

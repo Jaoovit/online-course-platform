@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Table(name = "users")
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id

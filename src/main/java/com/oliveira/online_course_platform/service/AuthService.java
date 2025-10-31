@@ -1,14 +1,11 @@
 package com.oliveira.online_course_platform.service;
 
-import com.oliveira.online_course_platform.domain.course.Course;
 import com.oliveira.online_course_platform.domain.user.RequestUserDTO;
 import com.oliveira.online_course_platform.domain.user.User;
 import com.oliveira.online_course_platform.exceptions.BadRequest;
 import com.oliveira.online_course_platform.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class AuthService {
@@ -24,27 +21,21 @@ public class AuthService {
 
     public User registerUser(RequestUserDTO data) {
 
-        User user = new User();
-
-        if (data.firstName().length() > 75) throw new BadRequest("First name can't have more then 25 characters");
-        user.setFirstName(data.firstName());
-
-        if (data.lastName().length() > 75) throw new BadRequest("Last name can't have more then 25 characters");
-        user.setLastName(data.lastName());
-
+        if (data.firstName().length() > 75) throw new BadRequest("First name can't have more then 75 characters");
+        if (data.lastName().length() > 75) throw new BadRequest("Last name can't have more then 75 characters");
         if (data.username().length() > 25) throw new BadRequest("Username can't have more then 25 characters");
-
-        userService.findUserByUserName(data.username());
-        user.setUsername(data.username());
-
-        userService.findUserByEmail(data.email());
-        user.setEmail(data.email());
-
         if (data.password().length() > 75) throw new BadRequest("Username can't have more then 75 characters");
         if (!data.password().equals(data.confirmPassword())) throw new BadRequest("Password and confirm password don't match");
-        user.setPassword(data.password());
 
-        user.setCourses(new ArrayList<Course>());
+        userService.findUserByUserName(data.username());
+        userService.findUserByEmail(data.email());
+
+        User user = new User();
+        user.setFirstName(data.firstName());
+        user.setLastName(data.lastName());
+        user.setUsername(data.username());
+        user.setEmail(data.email());
+        user.setPassword(data.password());
         user.setRole(roleService.createUserRole());
 
         userRepository.save(user);
