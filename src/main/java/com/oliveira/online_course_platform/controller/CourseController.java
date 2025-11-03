@@ -6,10 +6,7 @@ import com.oliveira.online_course_platform.domain.course.ResponseCourseDTO;
 import com.oliveira.online_course_platform.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,19 @@ public class CourseController {
                 course.getDescription(),
                 List.of());
         return ResponseEntity.ok(courseDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ResponseCourseDTO>> getCourses() {
+        List<Course> courses = courseService.getCourses();
+        List<ResponseCourseDTO> coursesDTO = courses.stream()
+                .map(course ->  new ResponseCourseDTO(
+                        course.getTitle(),
+                        course.getDescription(),
+                        course.getModules()
+                ))
+                .toList();
+
+        return ResponseEntity.ok(coursesDTO);
     }
 }

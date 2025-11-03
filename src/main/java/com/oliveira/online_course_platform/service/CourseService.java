@@ -7,6 +7,8 @@ import com.oliveira.online_course_platform.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseService {
 
@@ -26,5 +28,9 @@ public class CourseService {
         return course;
     }
 
+    public List<Course> getCourses() {
 
+        List<Course> courses = courseRepository.findAll();
+        return courses;
+    }
 }
