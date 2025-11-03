@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/course")
@@ -39,5 +40,16 @@ public class CourseController {
                 .toList();
 
         return ResponseEntity.ok(coursesDTO);
+    }
+
+    @GetMapping("/{courseId}")
+    public ResponseEntity<ResponseCourseDTO> getCourseById(@RequestParam UUID courseId) {
+        Course course = courseService.getCourseById(courseId);
+        ResponseCourseDTO courseDTO = new ResponseCourseDTO(
+                course.getTitle(),
+                course.getDescription(),
+                course.getModules()
+        );
+        return ResponseEntity.ok(courseDTO);
     }
 }

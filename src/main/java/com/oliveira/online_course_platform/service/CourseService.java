@@ -3,11 +3,14 @@ package com.oliveira.online_course_platform.service;
 import com.oliveira.online_course_platform.domain.course.Course;
 import com.oliveira.online_course_platform.domain.course.RequestCourseDTO;
 import com.oliveira.online_course_platform.exceptions.BadRequest;
+import com.oliveira.online_course_platform.exceptions.NotFound;
 import com.oliveira.online_course_platform.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CourseService {
@@ -16,7 +19,6 @@ public class CourseService {
     CourseRepository courseRepository;
 
     public Course createCourse(RequestCourseDTO data) {
-
         if (data.title().length() > 75) throw new BadRequest("Title can't have more then 75 characters");
         if (data.title().length() > 150) throw new BadRequest("Description can't have more then 150 characters");
 
@@ -29,8 +31,12 @@ public class CourseService {
     }
 
     public List<Course> getCourses() {
-
         List<Course> courses = courseRepository.findAll();
         return courses;
+    }
+
+    public Course getCourseById(UUID courseId) {
+        return courseRepository.findById(courseId)
+                .orElseThrow(() -> new NotFound("Course not found"));
     }
 }
