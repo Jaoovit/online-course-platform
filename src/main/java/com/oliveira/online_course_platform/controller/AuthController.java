@@ -8,6 +8,7 @@ import com.oliveira.online_course_platform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class AuthController {
     AuthService authService;
 
     @PostMapping("/register")
-    ResponseEntity<ResponseUserDTO> registerUser(RequestUserDTO data) {
+    ResponseEntity<ResponseUserDTO> registerUser(@RequestBody RequestUserDTO data) {
         User user = authService.registerUser(data);
         ResponseUserDTO userDTO = new ResponseUserDTO(
                 user.getFirstName(),
