@@ -53,4 +53,9 @@ public class CourseService {
         courseRepository.updateCourse(course.getId(), course.getTitle(), course.getDescription());
         return course;
     }
+
+    public void deleteCourse(UUID courseId) {
+        Course course = getCourseById(courseId);
+        courseRepository.delete(course);
+    }
 }
