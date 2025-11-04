@@ -52,4 +52,15 @@ public class CourseController {
         );
         return ResponseEntity.ok(courseDTO);
     }
+
+    @PutMapping("/{courseId}")
+    public ResponseEntity<ResponseCourseDTO> updateCourse(@RequestBody RequestCourseDTO data, @RequestParam UUID courseId) {
+        Course course = courseService.updateCourse(data, courseId);
+        ResponseCourseDTO courseDTO = new ResponseCourseDTO(
+                course.getTitle(),
+                course.getDescription(),
+                course.getModules()
+        );
+        return ResponseEntity.ok(courseDTO);
+    }
 }
