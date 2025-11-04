@@ -63,4 +63,10 @@ public class CourseController {
         );
         return ResponseEntity.ok(courseDTO);
     }
+
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity deleteCourse(@RequestParam UUID courseId) {
+        courseService.deleteCourse(courseId);
+        return ResponseEntity.ok().build();
+    }
 }
