@@ -17,13 +17,11 @@ public class CourseService {
     @Autowired
     CourseRepository courseRepository;
 
-    private void validateCourseInput(RequestCourseDTO data) {
-        if (data.title().length() > 75) throw new BadRequest("Title can't have more then 75 characters");
-        if (data.title().length() > 150) throw new BadRequest("Description can't have more then 150 characters");
-    }
+    @Autowired
+    ValidationService validationService;
 
     public Course createCourse(RequestCourseDTO data) {
-        validateCourseInput(data);
+        validationService.validateInput(data);
 
         Course course = new Course();
         course.setTitle(data.title());
@@ -44,7 +42,7 @@ public class CourseService {
     }
 
     public Course updateCourse(RequestCourseDTO data, UUID courseId) {
-        validateCourseInput(data);
+        validationService.validateInput(data);
 
         Course course = getCourseById(courseId);
         course.setTitle(data.title());

@@ -9,4 +9,7 @@ public class ModuleService {
 
     @Autowired
     private ModuleRepository moduleRepository;
+
+    @Autowired
+    private CourseService courseService;
 }
