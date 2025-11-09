@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/module")
+@RequestMapping("/api/modules")
 public class ModuleController {
 
     @Autowired
@@ -26,5 +26,18 @@ public class ModuleController {
                 module.getDescription(),
                 List.of());
         return ResponseEntity.ok(moduleDTO);
+    }
+
+    @GetMapping("/{courseId}")
+    public ResponseEntity<List<ResponseModuleDTO>> getModulesByCourseId(@RequestParam UUID courseId) {
+        List<Module> modules = moduleService.getModuleByCourseId(courseId);
+        List<ResponseModuleDTO> modulesDTO = modules.stream()
+                .map(module -> new ResponseModuleDTO(
+                        module.getTitle(),
+                        module.getDescription(),
+                        module.getLessons()
+                ))
+                .toList();
+        return ResponseEntity.ok(modulesDTO);
     }
 }
