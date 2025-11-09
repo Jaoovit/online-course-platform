@@ -13,7 +13,7 @@ public interface CourseRepository extends JpaRepository<Course, UUID> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Course e SET e.title = :title, e.description = :description WHERE e.id = :id")
+    @Query("UPDATE Course e SET e.title = :title, e.description = :description WHERE e.id = :courseId")
     public int updateCourse(@Param("courseId") UUID courseId,
                             @Param("title") String title,
                             @Param("description") String description);

@@ -12,4 +12,9 @@ public interface ModuleRepository extends JpaRepository<Module, UUID> {
 
     @Query("SELECT e FROM Module e LEFT JOIN e.course a WHERE a.id = :courseId")
     public List<Module> findModuleByCourseId(@Param("courseId") UUID courseId);
+
+    @Query("UPDATE Module e SET e.title = :title, e.description = :description WHERE e.id = :moduleId")
+    public int updateModule(@Param("moduleId") UUID moduleId,
+                               @Param("title") String title,
+                               @Param("description") String description);
 }
