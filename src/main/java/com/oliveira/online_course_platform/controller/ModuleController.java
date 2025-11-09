@@ -41,7 +41,7 @@ public class ModuleController {
         return ResponseEntity.ok(modulesDTO);
     }
 
-
+    @GetMapping("/{moduleID}")
     public ResponseEntity<ResponseModuleDTO> getModuleById(@RequestParam UUID moduleId) {
         Module module = moduleService.getModuleById(moduleId);
         ResponseModuleDTO moduleDTO = new ResponseModuleDTO(
@@ -50,5 +50,11 @@ public class ModuleController {
                 module.getLessons()
         );
         return  ResponseEntity.ok(moduleDTO);
+    }
+
+    @DeleteMapping("/{moduleId}")
+    public ResponseEntity deleteModule(@RequestParam UUID moduleId) {
+        moduleService.deleteModule(moduleId);
+        return ResponseEntity.ok().build();
     }
 }
