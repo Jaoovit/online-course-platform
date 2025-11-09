@@ -40,4 +40,15 @@ public class ModuleController {
                 .toList();
         return ResponseEntity.ok(modulesDTO);
     }
+
+
+    public ResponseEntity<ResponseModuleDTO> getModuleById(@RequestParam UUID moduleId) {
+        Module module = moduleService.getModuleById(moduleId);
+        ResponseModuleDTO moduleDTO = new ResponseModuleDTO(
+                module.getTitle(),
+                module.getDescription(),
+                module.getLessons()
+        );
+        return  ResponseEntity.ok(moduleDTO);
+    }
 }
