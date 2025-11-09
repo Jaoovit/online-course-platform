@@ -16,7 +16,7 @@ import java.util.UUID;
 public class CourseController {
 
     @Autowired
-    CourseService courseService;
+    private CourseService courseService;
 
     @PostMapping
     public ResponseEntity<ResponseCourseDTO> createCourse(@RequestBody RequestCourseDTO data) {
