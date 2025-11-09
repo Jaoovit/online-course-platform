@@ -41,7 +41,7 @@ public class ModuleController {
         return ResponseEntity.ok(modulesDTO);
     }
 
-    @GetMapping("/{moduleID}")
+    @GetMapping("/{moduleId}")
     public ResponseEntity<ResponseModuleDTO> getModuleById(@RequestParam UUID moduleId) {
         Module module = moduleService.getModuleById(moduleId);
         ResponseModuleDTO moduleDTO = new ResponseModuleDTO(
