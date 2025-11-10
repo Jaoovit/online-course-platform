@@ -7,6 +7,7 @@ import com.oliveira.online_course_platform.repository.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,5 +35,10 @@ public class LessonService {
 
         lessonRepository.save(lesson);
         return lesson;
+    }
+
+    public List<Lesson> getLessonsByModuleId(UUID moduleId) {
+        Module module = moduleService.getModuleById(moduleId);
+        return lessonRepository.findLessonByModuleId(module.getId());
     }
 }
