@@ -47,4 +47,15 @@ public class LessonService {
         return lessonRepository.findById(lessonId)
                 .orElseThrow(() -> new NotFound("Lesson not found"));
     }
+
+    public Lesson updateLesson(RequestLessonDTO data, UUID lessonId) {
+        validationService.validateInput(data);
+
+        Lesson lesson = getLessonById(lessonId);
+        lesson.setTitle(data.title());
+        lesson.setDescription(data.description());
+
+        lessonRepository.updateLesson(lesson.getId(), lesson.getTitle(), lesson.getDescription());
+        return lesson;
+    }
 }
