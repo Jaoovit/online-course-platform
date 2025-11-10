@@ -58,4 +58,9 @@ public class LessonService {
         lessonRepository.updateLesson(lesson.getId(), lesson.getTitle(), lesson.getDescription());
         return lesson;
     }
+
+    public void deleteLesson(UUID lessonId) {
+        Lesson lesson = getLessonById(lessonId);
+        lessonRepository.delete(lesson);
+    }
 }
