@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,5 +23,16 @@ public class LessonController {
         Lesson lesson = lessonService.createLesson(data, moduleId);
         ResponseLessonDTO lessonDTO = new ResponseLessonDTO(lesson.getTitle(), lesson.getDescription());
         return ResponseEntity.ok(lessonDTO);
+    }
+
+    @GetMapping("{moduleId}")
+    public ResponseEntity<List<ResponseLessonDTO>> getLessonsByModuleId(@RequestParam UUID moduleId) {
+        List<Lesson> lessons = lessonService.getLessonsByModuleId(moduleId);
+        List<ResponseLessonDTO> lessonsDTO = lessons.stream()
+                .map(lesson -> new ResponseLessonDTO(
+                        lesson.getTitle(),
+                        lesson.getDescription()
+                )).toList();
+        return ResponseEntity.ok(lessonsDTO);
     }
 }
