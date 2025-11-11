@@ -35,4 +35,14 @@ public class LessonController {
                 )).toList();
         return ResponseEntity.ok(lessonsDTO);
     }
+
+    @GetMapping("{lessonId}")
+    public ResponseEntity<ResponseLessonDTO> getLessonById(@RequestParam UUID lessonId) {
+        Lesson lesson = lessonService.getLessonById(lessonId);
+        ResponseLessonDTO lessonDTO = new ResponseLessonDTO(
+                lesson.getTitle(),
+                lesson.getDescription()
+        );
+        return ResponseEntity.ok(lessonDTO);
+    }
 }
