@@ -45,4 +45,10 @@ public class LessonController {
         );
         return ResponseEntity.ok(lessonDTO);
     }
+
+    @DeleteMapping("{lessonId}")
+    public ResponseEntity deleteLesson(@RequestParam UUID lessonId) {
+        lessonService.deleteLesson(lessonId);
+        return ResponseEntity.ok().build();
+    }
 }
