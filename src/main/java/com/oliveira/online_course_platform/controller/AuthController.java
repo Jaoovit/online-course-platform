@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -26,7 +28,9 @@ public class AuthController {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),
-                user.getUsername());
+                user.getUsername(),
+                List.of()
+                );
         return ResponseEntity.ok(userDTO);
     }
 }

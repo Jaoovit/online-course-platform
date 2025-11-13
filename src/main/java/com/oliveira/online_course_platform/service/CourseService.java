@@ -2,7 +2,6 @@ package com.oliveira.online_course_platform.service;
 
 import com.oliveira.online_course_platform.domain.course.Course;
 import com.oliveira.online_course_platform.domain.course.RequestCourseDTO;
-import com.oliveira.online_course_platform.exceptions.BadRequest;
 import com.oliveira.online_course_platform.exceptions.NotFound;
 import com.oliveira.online_course_platform.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
