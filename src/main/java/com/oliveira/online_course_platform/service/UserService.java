@@ -27,6 +27,19 @@ public class UserService {
         courses.add(course);
 
         user.setCourses(courses);
+        userRepository.save(user);
+        return user;
+    }
+
+    public User removeCourseFromUser(UUID userId, UUID courseId) {
+        User user = getUserById(userId);
+        Course course = courseService.getCourseById(courseId);
+
+        List<Course> courses = user.getCourses();
+        courses.remove(course);
+
+        user.setCourses(courses);
+        userRepository.save(user);
         return user;
     }
 
