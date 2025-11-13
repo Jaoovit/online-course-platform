@@ -43,7 +43,7 @@ public class UserService {
         return user;
     }
 
-    private User getUserById(UUID userId) {
+    public User getUserById(UUID userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new NotFound("User not found"));
     }
