@@ -46,6 +46,16 @@ public class LessonController {
         return ResponseEntity.ok(lessonDTO);
     }
 
+    @PutMapping("{lessonId}")
+    public ResponseEntity<ResponseLessonDTO> updateLesson(@RequestBody RequestLessonDTO data, @RequestParam UUID lessonId) {
+        Lesson lesson = lessonService.updateLesson(data, lessonId);
+        ResponseLessonDTO lessonDTO = new ResponseLessonDTO(
+                lesson.getTitle(),
+                lesson.getDescription()
+        );
+        return ResponseEntity.ok(lessonDTO);
+    }
+
     @DeleteMapping("{lessonId}")
     public ResponseEntity deleteLesson(@RequestParam UUID lessonId) {
         lessonService.deleteLesson(lessonId);

@@ -53,7 +53,7 @@ public class ModuleController {
     }
 
     @PutMapping("/{moduleId}")
-    public ResponseEntity updateModule(@RequestBody RequestModuleDTO data, @RequestParam UUID moduleId) {
+    public ResponseEntity<ResponseModuleDTO> updateModule(@RequestBody RequestModuleDTO data, @RequestParam UUID moduleId) {
         Module module = moduleService.updateModule(data, moduleId);
         ResponseModuleDTO moduleDTO = new ResponseModuleDTO(
                 module.getTitle(),
