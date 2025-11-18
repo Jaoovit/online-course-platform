@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("{userId}/{courseId}")
+    @PutMapping("{userId}/{courseId}")
     public ResponseEntity<ResponseUserDTO> addCourseToUser(@RequestParam UUID userId, @RequestParam UUID courseId) {
         User user = userService.addCourseToUser(userId, courseId);
         ResponseUserDTO userDTO = new ResponseUserDTO(
@@ -40,9 +40,10 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
+
     @DeleteMapping("{userId}/{courseId}")
     public ResponseEntity<ResponseUserDTO> removeCourseFromUser(@RequestParam UUID userId, @RequestParam UUID courseId) {
-        User user = userService.addCourseToUser(userId, courseId);
+        User user = userService.removeCourseFromUser(userId, courseId);
         ResponseUserDTO userDTO = new ResponseUserDTO(
                 user.getFirstName(),
                 user.getLastName(),

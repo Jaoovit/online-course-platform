@@ -4,7 +4,6 @@ import com.oliveira.online_course_platform.domain.user.RequestUserDTO;
 import com.oliveira.online_course_platform.domain.user.ResponseUserDTO;
 import com.oliveira.online_course_platform.domain.user.User;
 import com.oliveira.online_course_platform.service.AuthService;
-import com.oliveira.online_course_platform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
