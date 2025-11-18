@@ -49,7 +49,18 @@ public class ModuleController {
                 module.getDescription(),
                 module.getLessons()
         );
-        return  ResponseEntity.ok(moduleDTO);
+        return ResponseEntity.ok(moduleDTO);
+    }
+
+    @PutMapping("/{moduleId}")
+    public ResponseEntity updateModule(@RequestBody RequestModuleDTO data, @RequestParam UUID moduleId) {
+        Module module = moduleService.updateModule(data, moduleId);
+        ResponseModuleDTO moduleDTO = new ResponseModuleDTO(
+                module.getTitle(),
+                module.getDescription(),
+                module.getLessons()
+        );
+        return ResponseEntity.ok(moduleDTO);
     }
 
     @DeleteMapping("/{moduleId}")
